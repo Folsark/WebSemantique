@@ -17,9 +17,9 @@ import org.jsoup.nodes.Document;
  *
  * @author Flo Macé
  */
-public class TextExtraction {
+public class TextExtractor {
     
-    public TextExtraction(){
+    public TextExtractor(){
     }
 
     public List<String> extractTextFromURLList(List<String> URLList) throws IOException

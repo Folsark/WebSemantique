@@ -6,9 +6,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -70,7 +74,40 @@ public class DBpediaSpotlightClient {
         return extractURI(htmlResponse);
     }
     
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException, JSONException
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Que voulez vous tester ?");
+        System.out.println("     1) SpotLigth");
+        System.out.println("     2) googleCustomSearchEngine et TextExtraction");
+        System.out.println("\n saisissez votre choix :");
+        
+        int choix = 0;
+        boolean choiceIsGood = false;
+        while (!choiceIsGood)
+        {
+            System.out.println("**");
+            choix = sc.nextInt();
+            switch (choix)
+            {
+                case 1 :
+                    testSpotlight();
+                    choiceIsGood = true;
+                    break;
+                case 2 :
+                    testGSE();
+                    choiceIsGood = true;
+                    break;
+                default:
+                    break;
+
+            }
+            
+        }
+        
+    }
+    
+    public static void testSpotlight()
     {
         String test = "First documented in the 13th century, Berlin was the capital"
                 + " of the Kingdom of Prussia (1701–1918), the German Empire (1871–1918),"
@@ -91,5 +128,24 @@ public class DBpediaSpotlightClient {
             System.out.print("URI : ");
             System.out.println(URI);
         });
+    }
+    
+    public static void testGSE() throws IOException, JSONException
+    {
+        GoogleCustomSearchEngine gcse = new GoogleCustomSearchEngine("AIzaSyDmE16v9wqfViMfWWxkW07qCQQn2Or0uMI", "001556729754408094837:r86b9hjdnoe");
+        List<String> urlList = new ArrayList();
+        urlList = gcse.RequestSearch("Obama");
+        for(String l: urlList)
+        {
+            System.out.println(l);
+        }
+        System.out.println();
+        TextExtractor te = new TextExtractor();
+        List<String> rawTextList = new ArrayList();
+        rawTextList = te.extractTextFromURLList(urlList);
+        for (String l:rawTextList)
+        {
+            System.out.println(l);
+        }
     }
 }
