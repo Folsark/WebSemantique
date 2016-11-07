@@ -12,11 +12,14 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
 import org.json.JSONException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.xml.sax.SAXException;
 
 public class DBpediaSpotlightClient {
 
@@ -74,7 +77,7 @@ public class DBpediaSpotlightClient {
         return extractURI(htmlResponse);
     }
     
-    public static void main(String[] args) throws IOException, JSONException
+    public static void main(String[] args) throws IOException, JSONException, SAXException, ParserConfigurationException, XPathExpressionException
     {
         Scanner sc = new Scanner(System.in);
         System.out.println("Que voulez vous tester ?");
@@ -109,6 +112,8 @@ public class DBpediaSpotlightClient {
     
     public static void testSpotlight()
     {
+        
+        
         String test = "First documented in the 13th century, Berlin was the capital"
                 + " of the Kingdom of Prussia (1701–1918), the German Empire (1871–1918),"
                 + " the Weimar Republic (1919–33) and the Third Reich (1933–45). Berlin in"
@@ -130,7 +135,7 @@ public class DBpediaSpotlightClient {
         });
     }
     
-    public static void testGSE() throws IOException, JSONException
+    public static void testGSE() throws IOException, JSONException, SAXException, ParserConfigurationException, XPathExpressionException
     {
         GoogleCustomSearchEngine gcse = new GoogleCustomSearchEngine("AIzaSyDmE16v9wqfViMfWWxkW07qCQQn2Or0uMI", "001556729754408094837:r86b9hjdnoe");
         List<String> urlList = new ArrayList();
@@ -140,7 +145,7 @@ public class DBpediaSpotlightClient {
             System.out.println(l);
         }
         System.out.println();
-        TextExtractor te = new TextExtractor();
+        TextExtractor te = new TextExtractor("api_key.txt");
         List<String> rawTextList = new ArrayList();
         rawTextList = te.extractTextFromURLList(urlList);
         for (String l:rawTextList)
@@ -148,4 +153,5 @@ public class DBpediaSpotlightClient {
             System.out.println(l);
         }
     }
+   
 }
