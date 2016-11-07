@@ -1,4 +1,4 @@
-package ihm.graph;
+package tp.ihm.graph;
 
 import javafx.scene.Parent;
 import javafx.scene.control.Button;

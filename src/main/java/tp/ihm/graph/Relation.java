@@ -1,10 +1,7 @@
-package ihm.graph;
+package tp.ihm.graph;
 
 import javafx.scene.Parent;
-import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
-
-import java.awt.*;
 
 public class Relation extends Parent {
 

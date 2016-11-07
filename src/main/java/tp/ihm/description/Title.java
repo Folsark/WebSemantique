@@ -1,4 +1,4 @@
-package ihm.description;
+package tp.ihm.description;
 
 import javafx.scene.Parent;
 import javafx.scene.control.Tooltip;

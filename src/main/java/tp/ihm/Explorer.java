@@ -1,12 +1,12 @@
-package ihm;
+package tp.ihm;
 
-import ihm.description.*;
-import ihm.graph.*;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import tp.ihm.description.Description;
+import tp.ihm.graph.Graph;
 
 public class Explorer extends Application {
 
